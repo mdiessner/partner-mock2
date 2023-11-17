@@ -21,10 +21,9 @@ passport.use(new OAuth2Strategy({
     clientSecret: '23456474354654x87g4s4', // Replace with your client secret
     callbackURL: 'http://localhost:3000/auth/callback'
   },
-  function(accessToken, refreshToken) {
-    // Here, you will typically save the user profile and tokens to your database.
+  function(accessToken, refreshToken, profile, done) {
     // For this example, we just console log the accessToken
-    console.log('accessToken', accessToken);
+    done(null, profile);
   }
 ));
 
@@ -47,7 +46,8 @@ app.get('/', passport.authenticate('oauth2', {
     successRedirectUrl: "https://partnerdomain.co/success-page",
     redirectData:{
           preUserOneTimeToken: 'abc123',
-          user: '{"objectId":"12345","applicantId":"1","rent":"1000","deposit":"3000","currency":"EUR","callbackURL":"www.rentcard.com","partnerId":"46221151872"}',      
+          user: '{"objectId":"12345","applicantId":"1","rent":"1000","deposit":"3000","currency":"EUR","callbackURL":"www.rentcard.com","partnerId":"85289368532"}',      
+          successRedirectUrl: "https://partnerdomain.co/success-page",
     }
 
   }),
@@ -55,11 +55,11 @@ app.get('/', passport.authenticate('oauth2', {
 
 // Define the route for your OAuth2 callback
 app.get('/auth/callback',
-  passport.authenticate('oauth2', { failureRedirect: '/login' }),
+  passport.authenticate('oauth2', { failureRedirect: 'https://www.google.de' }),
   
   function(req, res) {
     const finalRedirectUrl = req.query.finalRedirectUrl;
-    // Successful authentication, redirect back to rentcard
+    // In this step, the partner would usually now take the code and exchange it for an access token.
     if (finalRedirectUrl) {
       res.redirect(finalRedirectUrl);
     } else {
