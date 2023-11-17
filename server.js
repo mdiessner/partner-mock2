@@ -17,8 +17,8 @@ app.use(session({
 passport.use(new OAuth2Strategy({
     authorizationURL: 'https://auth.development.rentcard.app/api/v1/oauth2/',
     tokenURL: 'https://auth.development.rentcard.app/api/v1/oauth2/',
-    clientID: '45gs23fa-4b4b-53g6-n56d-8957465a2bb2', // Replace with your client ID
-    clientSecret: '23456474354654x87g4s4', // Replace with your client secret
+    clientID: 'clientID', // Replace with your client ID
+    clientSecret: 'clientSecret', // Replace with your client secret
     callbackURL: 'http://localhost:3000/auth/callback'
   },
   function(accessToken, refreshToken, profile, done) {
