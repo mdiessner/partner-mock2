@@ -61,7 +61,7 @@ app.get('/auth/callback',
     const finalRedirectUrl = req.query.finalRedirectUrl;
     // In this step, the partner would usually now take the code and exchange it for an access token.
     if (finalRedirectUrl) {
-      res.redirect(finalRedirectUrl);
+      res.redirect(decodeURIComponent(finalRedirectUrl));
     } else {
       // Otherwise, throw an error
       const err = new Error('finalRedirectUrl parameter not provided');
