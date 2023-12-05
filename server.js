@@ -44,9 +44,10 @@ app.get('/', passport.authenticate('oauth2', {
   state: JSON.stringify({
     // Your state variables here
     successRedirectUrl: "https://partnerdomain.co/success-page",
+    applicantId: "1234567",
     redirectData:{
           preUserOneTimeToken: 'abc123',
-          user: '{"objectId":"12345","applicantId":"1","rent":"1000","deposit":"3000","currency":"EUR","callbackURL":"www.rentcard.com","partnerId":"85289368532"}',      
+          user: '{"objectId":"12345","applicantId":"1234567","rent":"1000","deposit":"3000","currency":"EUR","callbackURL":"www.rentcard.com","partnerId":"85289368532"}',      
           successRedirectUrl: "https://partnerdomain.co/success-page",
     }
 
